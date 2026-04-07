@@ -1,10 +1,9 @@
 ---
-name: "\U0001F41E Bug Report"
+name: 🐞 Bug Report
 about: 버그 발생 시 사용하는 템플릿입니다.
 title: "[FIX] 버그 내용"
 labels: bug
 assignees: ''
-
 ---
 
 ## 🚨 버그 상황 (Description)
