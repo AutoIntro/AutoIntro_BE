@@ -4,6 +4,6 @@ import org.springframework.http.HttpStatus;
 
 public interface BaseStatus {
     HttpStatus getHttpStatus();
-    String getCode();zz
+    String getCode();
     String getMessage();
 }
