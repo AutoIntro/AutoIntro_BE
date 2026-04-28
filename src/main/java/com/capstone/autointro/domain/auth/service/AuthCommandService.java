@@ -1,5 +1,11 @@
 package com.capstone.autointro.domain.auth.service;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 public interface AuthCommandService {
-    // TODO: 토큰 재발급, 로그아웃
+
+    String reissueToken(HttpServletRequest request, HttpServletResponse response);
+
+    void logout(HttpServletRequest request, HttpServletResponse response, Long userId);
 }
