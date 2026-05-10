@@ -8,6 +8,7 @@ import com.capstone.autointro.domain.auth.oauth.OAuth2SuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -60,6 +61,17 @@ public class SecurityConfig {
                                 userInfo.userService(customOAuth2UserService))
                         .successHandler(oAuth2SuccessHandler)
                         .failureHandler(oAuth2FailureHandler)
+                )
+
+                // 인증 실패 시 GitHub 리다이렉트 대신 401 반환
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            response.setStatus(401);
+                            response.setContentType(MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8");
+                            response.getWriter().write("""
+                                    {"isSuccess":false,"code":"AUTH_401","message":"인증되지 않은 사용자입니다.","result":null}
+                                    """);
+                        })
                 )
 
                 // JWT 필터 등록

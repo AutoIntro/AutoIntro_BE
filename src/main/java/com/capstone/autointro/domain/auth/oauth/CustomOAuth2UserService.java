@@ -47,8 +47,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private OAuth2UserInfo resolveUserInfo(String registrationId, java.util.Map<String, Object> attributes) {
         return switch (registrationId) {
-            case "google" -> new GoogleOAuth2UserInfo(attributes);
-            case "kakao" -> new KakaoOAuth2UserInfo(attributes);
+            case "github" -> new GithubOAuth2UserInfo(attributes);
             default -> throw new GeneralException(ErrorStatus.INVALID_SOCIAL_PROVIDER);
         };
     }
@@ -74,6 +73,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                             .providerName(userInfo.getProviderName())
                             .providerUserId(userInfo.getProviderId())
                             .providerEmail(userInfo.getEmail())
+                            .providerUsername(userInfo.getUsername())
                             .user(user)
                             .build()
             );

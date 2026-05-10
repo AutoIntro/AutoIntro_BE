@@ -10,4 +10,6 @@ public interface ProviderRepository extends JpaRepository<Provider, Long> {
     Optional<Provider> findByProviderNameAndProviderUserId(String providerName, String providerUserId);
 
     boolean existsByProviderNameAndProviderUserId(String providerName, String providerUserId);
+
+    Optional<Provider> findByUserIdAndProviderName(Long userId, String providerName);
 }

@@ -40,6 +40,9 @@ public enum ErrorStatus implements BaseStatus {
     PROJECT_NOT_FOUND("GIT_404", HttpStatus.NOT_FOUND, "깃 프로젝트를 찾을 수 없습니다."),
     PROJECT_NOT_AUTHORIZED("GIT_403", HttpStatus.FORBIDDEN, "깃 프로젝트에 대한 권한이 없습니다."),
     PROJECT_ANALYSIS_NOT_FOUND("GIT_404_1", HttpStatus.NOT_FOUND, "프로젝트 분석 결과를 찾을 수 없습니다."),
+    GITHUB_ACCOUNT_MISMATCH("GIT_403_1", HttpStatus.FORBIDDEN, "로그인한 GitHub 계정의 레포지토리만 등록할 수 있습니다."),
+    GITHUB_API_ERROR("GIT_500", HttpStatus.INTERNAL_SERVER_ERROR, "GitHub API 호출에 실패했습니다."),
+    GITHUB_ACCESS_TOKEN_NOT_FOUND("GIT_401", HttpStatus.UNAUTHORIZED, "GitHub 액세스 토큰이 없습니다. 다시 로그인해주세요."),
 
     // Introduction
     USER_REQUEST_NOT_FOUND("INTRO_404", HttpStatus.NOT_FOUND, "요청 정보를 찾을 수 없습니다."),

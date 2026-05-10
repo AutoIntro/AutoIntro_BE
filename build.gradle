@@ -24,6 +24,12 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.ai:spring-ai-bom:1.1.6'
+    }
+}
+
 dependencies {
     // Web
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -55,6 +61,12 @@ dependencies {
 
     // MySQL
     runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // GitHub API
+    implementation 'org.kohsuke:github-api:1.326'
+
+    // Spring AI (OpenAI)
+    implementation 'org.springframework.ai:spring-ai-starter-model-openai'
 
     // Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

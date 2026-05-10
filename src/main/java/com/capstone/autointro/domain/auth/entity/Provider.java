@@ -29,6 +29,16 @@ public class Provider {
     @Column(name = "provider_email", length = 255)
     private String providerEmail;
 
+    @Column(name = "provider_username", length = 100)
+    private String providerUsername;
+
+    @Column(name = "github_access_token", length = 500)
+    private String githubAccessToken;
+
+    public void updateGithubAccessToken(String githubAccessToken) {
+        this.githubAccessToken = githubAccessToken;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
