@@ -16,17 +16,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 public interface AuthApi {
 
-    @Operation(summary = "토큰 재발급", description = "액세스 토큰 만료 시 재발급합니다.")
+    @Operation(summary = "토큰 재발급", description = "액세스 토큰 만료 시 쿠키의 리프레시 토큰으로 재발급합니다.")
     @PostMapping("/reissue")
     ResponseEntity<ApiResponse<?>> reissueToken(
             HttpServletRequest request,
             HttpServletResponse response
     );
 
-    @Operation(summary = "로그아웃", description = "로그아웃 처리합니다.")
+    @Operation(summary = "로그아웃", description = "리프레시 토큰 쿠키를 삭제하여 로그아웃 처리합니다.")
     @PostMapping("/logout")
     ResponseEntity<ApiResponse<?>> logout(
             HttpServletRequest request,
+            HttpServletResponse response,
             @Parameter(hidden = true) @AuthenticationPrincipal Long userId
     );
 }
