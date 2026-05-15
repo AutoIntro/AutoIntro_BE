@@ -24,16 +24,31 @@ public class ApiResponse<T> {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T result;
 
+    // 데이터 없는 성공 응답
     public static ResponseEntity<ApiResponse<Void>> success(BaseStatus status) {
         return ResponseEntity
                 .status(status.getHttpStatus())
                 .body(new ApiResponse<>(true, status.getCode(), status.getMessage(), null));
     }
 
+    // 데이터 있는 성공 응답
     public static <T> ResponseEntity<ApiResponse<T>> success(BaseStatus status, T result) {
         return ResponseEntity
                 .status(status.getHttpStatus())
                 .body(new ApiResponse<>(true, status.getCode(), status.getMessage(), result));
+    }
+
+    // 와일드카드 반환이 필요한 경우 (Controller에서 ResponseEntity<ApiResponse<?>> 반환 시)
+    public static <T> ResponseEntity<ApiResponse<?>> of(BaseStatus status, T result) {
+        return ResponseEntity
+                .status(status.getHttpStatus())
+                .body(new ApiResponse<>(true, status.getCode(), status.getMessage(), result));
+    }
+
+    public static ResponseEntity<ApiResponse<?>> of(BaseStatus status) {
+        return ResponseEntity
+                .status(status.getHttpStatus())
+                .body(new ApiResponse<>(true, status.getCode(), status.getMessage(), null));
     }
 
     public static ResponseEntity<ApiResponse<Void>> error(BaseStatus status) {
